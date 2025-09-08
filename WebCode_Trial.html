@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Digital Divide Project</title>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font: 16px -apple-system, sans-serif;
+        line-height: 1.6em;
+      }
+      header, section {
+        padding: 2em;
+        margin: 0 auto;
+        max-width: 1000px;
+      }
+      h1, h2, h3 {
+        text-align: center;
+      }
+      p, ul, ol {
+        max-width: 800px;
+        margin: 0 auto 1em auto;
+        text-align: justify;
+      }
+
+      /* Navigation Bar */
+      nav {
+        background-color: #333;
+        padding: 0.5em 1em;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        gap: 2em;
+      }
+      nav ul li {
+        display: inline;
+      }
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      nav ul li a:hover {
+        text-decoration: underline;
+      }
+
+      /* Flow Diagram */
+      .flow-diagram {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 2em auto;
+        max-width: 900px;
+        flex-wrap: wrap;
+      }
+      .step {
+        flex: 1;
+        margin: 0.5em;
+        padding: 1em;
+        background: #f2f2f2;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        text-align: center;
+      }
+      .arrow {
+        font-size: 2em;
+        margin: 0 0.5em;
+        align-self: center;
+      }
+
+      /* Dark mode */
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #222;
+          color: #eee;
+        }
+        nav {
+          background-color: #111;
+        }
+        nav ul li a {
+          color: #eee;
+        }
+        .step {
+          background: #333;
+          border: 1px solid #555;
+        }
+        a.download-link {
+          color: #66ccff;
+        }
+        img {
+          filter: invert(1);
+        }
+      }
+
+      /* PDF link */
+      a.download-link {
+        display: block;
+        text-align: center;
+        margin-top: 1em;
+        font-weight: bold;
+      }
+
+      /* Results Subsections */
+      .viz-container {
+        margin: 2em auto;
+        max-width: 1000px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Navigation Bar -->
+    <nav>
+      <ul>
+        <li><a href="#description">Description</a></li>
+        <li><a href="#data-source">Data Source</a></li>
+        <li><a href="#methodology">Methodology</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+
+    <!-- Project Title -->
+    <header>
+      <h1>Digital Divide Analysis</h1>
+    </header>
+
+    <!-- Project Description -->
+    <section id="description">
+      <h2>Project Description</h2>
+      <p>
+        This project investigates digital inequality by analyzing internet speed 
+        variations across different regions. By combining internet speed test data 
+        with population density and administrative boundaries, the analysis 
+        highlights disparities in digital infrastructure that affect development 
+        and connectivity.
+      </p>
+    </section>
+
+    <!-- Data Source -->
+    <section id="data-source">
+      <h2>Data Source</h2>
+      <ul>
+        <li><strong>Ookla Speedtest</strong> – Global fixed and mobile internet performance (tiles at zoom-16).</li>
+        <li><strong>Kontur Population Data</strong> – For weighting speed measures by population density.</li>
+        <li><strong>GADM Boundaries</strong> – Country and subnational administrative maps (v4.1).</li>
+      </ul>
+    </section>
+
+    <!-- Methodology -->
+    <section id="methodology">
+      <h2>Methodology</h2>
+      <p>
+        Internet speed estimates were computed quarterly (2019 Q1 – 2024 Q4) using 
+        Ookla’s Speedtest data at the tile level and aggregated to country, admin1, 
+        and admin2 units. The process involved:
+      </p>
+      <ul>
+        <li><strong>Adjusting Spatial Resolution</strong> – Original zoom-16 tiles (~610m) were aggregated to zoom-14 tiles (~2.5 km) for computational efficiency.</li>
+        <li><strong>Tile Centroids</strong> – Each tile’s centroid was calculated from quadkeys and mapped to geographic coordinates.</li>
+        <li><strong>Spatial Join</strong> – Tiles were assigned to countries/admin units using GADM boundaries.</li>
+        <li><strong>Weighted Aggregation</strong> – Average and median speeds were computed separately for fixed and mobile internet, weighted by number of tests and devices.</li>
+      </ul>
+
+      <!-- Procedures -->
+      <h3>Procedures</h3>
+      <ol>
+        <li><strong>Adjusting Spatial Granularity:</strong> Aggregate zoom-16 (~610m) tiles into zoom-14 (~2.5 km) tiles for efficiency.</li>
+        <li><strong>Computing Tile Centroids:</strong> Decode quadkeys into tile coordinates, then compute geographic centroids.</li>
+        <li><strong>Assigning Internet Speed Data:</strong> Match tile centroids to GADM country/admin boundaries.</li>
+        <li><strong>Aggregating Metrics:</strong> Compute weighted averages (by tests) and medians (by devices) for fixed and mobile internet speeds/latency.</li>
+      </ol>
+
+      <!-- Flow Diagram -->
+      <div class="flow-diagram">
+        <div class="step">Step 1<br>Adjust Granularity<br>(Zoom-16 → Zoom-14)</div>
+        <div class="arrow">➡️</div>
+        <div class="step">Step 2<br>Compute Tile Centroids</div>
+        <div class="arrow">➡️</div>
+        <div class="step">Step 3<br>Assign to Countries/Admins</div>
+        <div class="arrow">➡️</div>
+        <div class="step">Step 4<br>Aggregate Metrics<br>(Avg & Median)</div>
+      </div>
+
+      <a href="ReadMe_InternetSpeed_GADM_admin2.pdf" class="download-link" target="_blank">
+        📄 Download Full Methodology (PDF)
+      </a>
+    </section>
+
+    <!-- Results -->
+    <section id="results">
+      <h2>Results</h2>
+
+      <!-- Subsection 1: Global Trends -->
+      <div class="viz-container" id="global-trends">
+        <h3>1. Global Trends in Internet Speed</h3>
+        <p>Interactive line chart showing global average download and upload speeds by year.</p>
+        <!-- Tableau embed code will go here later -->
+        <div class="tableauPlaceholder" style="height:400px; background:#f2f2f2; text-align:center; padding:2em;">
+          [Tableau Embed Placeholder: Global Trends]
+        </div>
+      </div>
+
+      <!-- Subsection 2: Country Interactive Map -->
+      <div class="viz-container" id="country-map">
+        <h3>2. Country-Level Interactive Map</h3>
+        <p>Interactive map of internet speeds by country, admin1, and admin2 levels.</p>
+        <div class="tableauPlaceholder" id="viz-country-map" style="position: relative">
+          <noscript>
+            <a href="#">
+              <img alt="Work Sheet 1"
+                   src="https://public.tableau.com/static/images/9T/9TKZX4B5M/1_rss.png"
+                   style="border: none" />
+            </a>
+          </noscript>
+          <object class="tableauViz" style="display:none;">
+            <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
+            <param name="embed_code_version" value="3" />
+            <param name="path" value="shared/9TKZX4B5M" />
+            <param name="toolbar" value="yes" />
+            <param name="static_image" value="https://public.tableau.com/static/images/9T/9TKZX4B5M/1.png" />
+            <param name="animate_transition" value="yes" />
+            <param name="display_static_image" value="yes" />
+            <param name="display_spinner" value="yes" />
+            <param name="display_overlay" value="yes" />
+            <param name="display_count" value="yes" />
+            <param name="language" value="en-US" />
+            <param name="filter" value="publish=yes" />
+          </object>
+        </div>
+      </div>
+
+      <!-- Subsection 3: Gini Table -->
+      <div class="viz-container" id="gini-table">
+        <h3>3. Gini Table</h3>
+        <p>Interactive table of Gini coefficients for digital inequality across countries.</p>
+        <!-- Tableau embed code will go here later -->
+        <div class="tableauPlaceholder" style="height:400px; background:#f2f2f2; text-align:center; padding:2em;">
+          [Tableau Embed Placeholder: Gini Table]
+        </div>
+      </div>
+
+      <!-- Subsection 4: Lorenz Curve -->
+      <div class="viz-container" id="lorenz-curve">
+        <h3>4. Lorenz Curve</h3>
+        <p>Interactive Lorenz curve showing the distribution of internet speeds.</p>
+        <!-- Tableau embed code will go here later -->
+        <div class="tableauPlaceholder" style="height:400px; background:#f2f2f2; text-align:center; padding:2em;">
+          [Tableau Embed Placeholder: Lorenz Curve]
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <h2>About</h2>
+      <p>
+        This project was developed as part of a research initiative on digital 
+        transformation and inequality. It aims to provide policymakers, researchers, 
+        and the public with an accessible view of how internet infrastructure 
+        distribution affects inclusivity in the digital economy.
+      </p>
+    </section>
+
+    <!-- Tableau Embed Script -->
+    <script type="text/javascript">
+      var mapDiv = document.getElementById('viz-country-map');
+      var vizElement = mapDiv.getElementsByTagName('object')[0];
+      vizElement.style.width = '100%';
+      vizElement.style.height = (mapDiv.offsetWidth * 0.75) + 'px';
+      var scriptElement = document.createElement('script');
+      scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+      vizElement.parentNode.insertBefore(scriptElement, vizElement);
+    </script>
+
+  </body>
+</html>
+
+
