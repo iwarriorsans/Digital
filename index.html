@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Digital Divide</title>
+  <style>
+    body { margin: 0; font: 16px -apple-system, sans-serif; line-height: 1.6em; }
+    nav { background: #333; padding: 0.5em; }
+    nav ul { list-style: none; display: flex; justify-content: center; gap: 2em; margin: 0; padding: 0; }
+    nav a { color: white; text-decoration: none; font-weight: bold; cursor: pointer; }
+    nav a:hover { text-decoration: underline; }
+    section { padding: 2em; max-width: 1000px; margin: auto; display: none; }
+    section.active { display: block; }
+    h1, h2, h3, h4 { text-align: center; }
+    .viz-container { margin: 2em auto; }
+    .team-list { max-width: 600px; margin: 2em auto; }
+    .team-member { margin-bottom: 1em; }
+    .team-member strong { display: inline-block; width: 200px; }
+    a.download-link { display: block; text-align: center; margin-top: 1em; font-weight: bold; }
+    a.email-link { color: #0066cc; text-decoration: none; }
+    a.email-link:hover { text-decoration: underline; }
+    table { border-collapse: collapse; margin: 1em auto; }
+    table, th, td { border: 1px solid #ccc; }
+    th, td { padding: 6px 12px; text-align: center; }
+    @media (prefers-color-scheme: dark) {
+      body { background-color: #222; color: #eee; }
+      nav { background: #111; }
+      nav a { color: #eee; }
+      table, th, td { border: 1px solid #555; }
+      a.download-link { color: #66ccff; }
+      a.email-link { color: #66ccff; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Tabs -->
+  <nav>
+    <ul>
+      <li><a onclick="showTab('home')">Home</a></li>
+      <li><a onclick="showTab('data')">Data Source</a></li>
+      <li><a onclick="showTab('methodology')">Methodology</a></li>
+      <li><a onclick="showTab('results')">Results</a></li>
+      <li><a onclick="showTab('about')">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- Home -->
+  <section id="home" class="active">
+    <h1>Digital Divide Analysis</h1>
+    <h2>Project Description</h2>
+    <p>
+      With the rise of the digital economy, an important and evolving topic has been the digital divide. 
+      It was first granted international exposure and brought to the forefront when it began appearing 
+      in several United Nations reports, and has become a critical concern for organizations, policymakers, 
+      and scholars across various fields. Digital divide refers to the gap between people who have 
+      adequate access to information communication technology (ICT) and people who have poor or no 
+      access to ICT. The different forms of digital gaps can intensify inequalities within society as they 
+      can either restrict or improve citizens’ social and economic capital as well as their abilities to 
+      participate in society. 
+      <br><em>Note: this section is directly quoted from the introduction section of one journal article. 
+      <a href="https://www.sciencedirect.com/science/article/pii/S0040162521007903" target="_blank">Source</a>. 
+      Needs further adjustment for later drafting.</em>
+    </p>
+    <p>
+      Traditionally, much of the discourse around the digital divide has framed the issue in binary terms: 
+      the presence or absence of internet coverage (need more literature citation). While this perspective 
+      has been useful in establishing basic access goals, it obscures significant variations in the quality 
+      of internet access, including speed, reliability, and bandwidth. As scholarship has evolved, there is 
+      growing recognition that the digital divide is not only about whether people are connected, but how 
+      well they are connected. This distinction is essential, as poor-quality internet access can limit the 
+      developmental benefits typically associated with connectivity.
+    </p>
+    <p>
+      Despite this recognition, current empirical approaches remain constrained. Most existing metrics are 
+      area-based, measuring coverage over a geographic extent without accounting for the distribution of 
+      populations within those areas. This approach may obscure disparities in internet quality, particularly 
+      in densely populated but under-resourced communities. To address this gap, this report proposes a novel, 
+      population-based measurement index to capture the evolving nature of internet quality. By incorporating 
+      population distribution into internet performance metrics, this approach offers a more nuanced and 
+      equitable representation of digital inequality.
+    </p>
+    <p>
+      Beyond measurement, this report also explores the feasibility of predictive modeling techniques to fill 
+      existing data gaps. In regions where high-resolution internet speed data are unavailable or unreliable, 
+      can machine learning or neural network models generate accurate predictions based on alternative geospatial 
+      indicators, such as road networks or satellite-derived night-time lights? Furthermore, how robust are these 
+      predictions when validated across training and test sets? These secondary research questions aim to assess 
+      both the methodological rigor and the practical applicability of new measurement approaches to digital inequality.
+    </p>
+  </section>
+
+  <!-- Data Source -->
+<section id="data">
+  <h2>Data Source</h2>
+
+  <h3>1. Data Source</h3>
+  <p>
+    This report utilizes three primary datasets to construct a population-based measurement 
+    of internet quality and assess digital inequality across space.
+  </p>
+
+  <h4>1.1 Internet Speed Data</h4>
+  <p><em>(Copied from He’s previous note, could be adjusted in the future)</em></p>
+  <ul>
+    <li><strong>Source:</strong> Speedtest by Ookla – Global Fixed and Mobile Network Performance Maps</li>
+    <li><strong>Description:</strong> Provides global fixed broadband and mobile (cellular) network performance metrics 
+        in zoom level 16 Web Mercator tiles (≈610m × 610m at the equator). Updated quarterly. 
+        On average, each quarter includes 4.9 million tiles for fixed internet data and 3.3 million 
+        tiles for mobile internet data. The dataset is aggregated from real-world user tests conducted via Ookla’s Speedtest application.</li>
+    <li><strong>Access Link:</strong> 
+      <a href="https://www.speedtest.net/insights/blog/ookla-global-broadband-performance-map-open-dataset/" target="_blank">
+        Ookla Open Data
+      </a>
+    </li>
+  </ul>
+
+  <h4>1.2 Population Density</h4>
+  <ul>
+    <li><strong>Meta</strong> (shared by Sharada) – Provides population density estimates at a 30m × 30m resolution, 
+        derived from satellite imagery and census data.</li>
+    <li><strong>Kontur</strong> (cleaned by Jinyun Huang) – Provides population estimates at 400m × 400m resolution, 
+        harmonized with administrative boundaries and prepared for integration.</li>
+    <li><strong>Access Link:</strong> 
+      <a href="https://www.kontur.io/data" target="_blank">Kontur Population Data</a>
+    </li>
+  </ul>
+
+  <h4>1.3 Administrative Boundaries (Shapefiles)</h4>
+  <ul>
+    <li><strong>Source:</strong> World Bank Internal System (shared by He)</li>
+    <li><strong>Usage:</strong> Shapefiles for national and subnational boundaries are used to aggregate 
+        tile-level internet and population data to administrative levels (country, province). 
+        These boundaries also facilitate visualization and cross-country comparisons.</li>
+  </ul>
+
+  <h3>2. Data Usage</h3>
+  <p><strong>Thinking logically from population (Sharada’s perspective):</strong></p>
+  <p><em>Yifan’s Work: First try a small area to test internet coverage. If it works, adopt this approach.</em></p>
+  
+  <table border="1" cellpadding="6" cellspacing="0" style="margin:auto; text-align:center;">
+    <tr>
+      <th>Population (Meta/Kontur)</th>
+      <th>Ookla</th>
+      <th>Population (Meta/Kontur)</th>
+    </tr>
+    <tr><td>Y</td><td>Y</td><td>Y</td></tr>
+    <tr><td>Y</td><td>Y</td><td>N</td></tr>
+    <tr><td>Y</td><td>N</td><td>Y</td></tr>
+  </table>
+
+  <br/>
+
+  <p><strong>Thinking logically from quadkey (He’s perspective, Plan B):</strong></p>
+  
+  <table border="1" cellpadding="6" cellspacing="0" style="margin:auto; text-align:center;">
+    <tr>
+      <th>Quad key</th>
+      <th>Ookla</th>
+      <th>Population (Meta/Kontur)</th>
+      <th>Case</th>
+    </tr>
+    <tr>
+      <td>Y</td><td>Y</td><td>Y</td>
+      <td>Case 1: Most ideal</td>
+    </tr>
+    <tr>
+      <td>Y</td><td>N</td><td>Y</td>
+      <td>Case 2: Missing Ookla data → requires ML/neural networks for prediction</td>
+    </tr>
+    <tr>
+      <td>Y</td><td>Y</td><td>N</td>
+      <td>Case 3: Possible area restriction – Meta excluded low-population zones</td>
+    </tr>
+    <tr>
+      <td>Y</td><td>N</td><td>N</td>
+      <td>Ignore – not useful for report/paper</td>
+    </tr>
+  </table>
+</section>
+
+
+  <!-- Methodology Source -->
+<section id="methodology">
+  <h2>Methodology</h2>
+
+  <h3>Procedures</h3>
+  <p>
+    The original datasets provide average download/upload internet speed (kbps), latency (ms), 
+    number of tests, and number of devices performing the tests at the zoom-16 tile level for each quarter. 
+    The following steps outline the methodology for processing and aggregating the data to generate 
+    quarterly country-level internet speed estimates.
+  </p>
+
+  <h4>Understanding the Quadkey System</h4>
+  <ul>
+    <li><strong>Tile Hierarchy:</strong> At zoom level 0, the entire world is represented by a single tile. 
+        Each zoom level subdivides every tile into four smaller tiles, exponentially increasing spatial resolution.</li>
+    <li><strong>Quadkey Encoding:</strong> Each tile is uniquely identified by a quadkey, a string of digits 
+        where each digit (0–3) represents the tile’s position in a parent tile’s subdivision.</li>
+    <li><strong>Zoom-16 vs. Zoom-14:</strong> At zoom-16, tiles are ~610.8m × 610.8m at the equator, while 
+        zoom-14 tiles cover ~2.5 km × 2.5 km, offering coarser but more computationally efficient resolution.</li>
+  </ul>
+
+  <p><strong>Example: Quadkey ‘123’ at Zoom Level 3</strong></p>
+  <ul>
+    <li>‘1’ → Selects the upper-right tile at zoom-1.</li>
+    <li>‘2’ → Chooses the lower-left tile within that upper-right tile.</li>
+    <li>‘3’ → Picks the lower-right tile within the lower-left tile.</li>
+  </ul>
+
+  <h4>Step 1: Adjusting Spatial Granularity</h4>
+  <p>
+    The raw dataset is provided at zoom-16. To improve computational efficiency and ensure meaningful 
+    aggregation, granularity was reduced to zoom-14, where each tile represents ~2.5 km × 2.5 km.
+  </p>
+
+  <h4>Step 2: Computing Tile Centroids</h4>
+  <p>
+    Each zoom-14 tile is identified by a 14-digit quadkey. Centroid coordinates (latitude, longitude) are computed by:
+  </p>
+  <ol>
+    <li><strong>Decode the quadkey</strong> → Convert quadkey into tile coordinates (X, Y) and zoom level (Z) using base-4 encoding.</li>
+    <li><strong>Convert to Latitude/Longitude</strong> → Compute centroid in geographic coordinates (EPSG:4326).</li>
+  </ol>
+
+  <h4>Step 3: Assigning Internet Speed Data to Countries</h4>
+  <p>
+    Using the World Bank Official Boundaries dataset, a spatial lookup was performed to assign 
+    each zoom-14 tile centroid to the appropriate country.
+  </p>
+
+  <h4>Step 4: Aggregating Internet Speed at the Country/Admin1/Admin2 Level</h4>
+  <ul>
+    <li><strong>Weighted averages:</strong> Internet speed and latency for mobile and fixed internet 
+        are averaged with number of tests as weights.</li>
+    <li><strong>Weighted medians:</strong> Computed with number of devices as weights, using this procedure:
+      <ol>
+        <li>Tiles within each country-year-quarter sorted by variable of interest (speed or latency).</li>
+        <li>Cumulative sum of devices calculated.</li>
+        <li>Tile at the 50th percentile identified → its value is the weighted median.</li>
+      </ol>
+    </li>
+  </ul>
+
+  <h4>Output Variables</h4>
+  <p>
+    The final dataset provides quarterly country/admin1/admin2-level estimates of internet speed, 
+    including download/upload speeds, latency, and test volumes for both mobile and fixed internet connections.
+  </p>
+
+  <table border="1" cellpadding="6" cellspacing="0" style="margin:auto; text-align:left; border-collapse:collapse;">
+    <tr><th>Variable Name</th><th>Description</th></tr>
+    <tr><td>country_code</td><td>Three-letter country code</td></tr>
+    <tr><td>country_name</td><td>Country name</td></tr>
+    <tr><td>admin1_code</td><td>Admin-1 unit code</td></tr>
+    <tr><td>admin1_name</td><td>Admin-1 unit name</td></tr>
+    <tr><td>admin2_code</td><td>Admin-2 unit code</td></tr>
+    <tr><td>admin2_name</td><td>Admin-2 unit name</td></tr>
+    <tr><td>year</td><td>Year of observation</td></tr>
+    <tr><td>quarter</td><td>Quarter (1–4)</td></tr>
+    <tr><td>mobile_upload_speed</td><td>Average mobile internet upload speed (kbps)</td></tr>
+    <tr><td>mobile_download_speed</td><td>Average mobile internet download speed (kbps)</td></tr>
+    <tr><td>mobile_latency</td><td>Average mobile internet latency (ms)</td></tr>
+    <tr><td>mobile_median_upload_speed</td><td>Median mobile internet upload speed (kbps)</td></tr>
+    <tr><td>mobile_median_download_speed</td><td>Median mobile internet download speed (kbps)</td></tr>
+    <tr><td>mobile_median_latency</td><td>Median mobile internet latency (ms)</td></tr>
+    <tr><td>mobile_tests</td><td>Total number of tests for mobile internet</td></tr>
+    <tr><td>mobile_devices</td><td>Total number of devices performing mobile speed tests</td></tr>
+    <tr><td>fixed_upload_speed</td><td>Average fixed internet upload speed (kbps)</td></tr>
+    <tr><td>fixed_download_speed</td><td>Average fixed internet download speed (kbps)</td></tr>
+    <tr><td>fixed_latency</td><td>Average fixed internet latency (ms)</td></tr>
+    <tr><td>fixed_median_upload_speed</td><td>Median fixed internet upload speed (kbps)</td></tr>
+    <tr><td>fixed_median_download_speed</td><td>Median fixed internet download speed (kbps)</td></tr>
+    <tr><td>fixed_median_latency</td><td>Median fixed internet latency (ms)</td></tr>
+    <tr><td>fixed_tests</td><td>Total number of tests for fixed internet</td></tr>
+    <tr><td>fixed_devices</td><td>Total number of devices performing fixed speed tests</td></tr>
+  </table>
+
+  <br/>
+  <a href="ReadMe_InternetSpeed_GADM_admin2.pdf" class="download-link" target="_blank">
+    📄 Download Full Methodology (PDF)
+  </a>
+</section>
+
+  <!-- Results -->
+  <section id="results">
+    <h2>Results</h2>
+
+    <div class="viz-container">
+      <h3>1. Global Trends in Internet Speed</h3>
+      <p>[Placeholder – Tableau embed to be added later]</p>
+    </div>
+
+    <div class="viz-container">
+      <h3>2. Country-Level Interactive Map</h3>
+      <div class='tableauPlaceholder' id='viz1757457283941' style='position: relative'>
+        <noscript>
+          <a href='#'>
+            <img alt='Dashboard 2'
+                 src='https://public.tableau.com/static/images/M6/M6SMRJKHP/1.png'
+                 style='border: none'/>
+          </a>
+        </noscript>
+        <object class='tableauViz' style='display:none;'>
+          <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+          <param name='embed_code_version' value='3' /> 
+          <param name='path' value='shared/M6SMRJKHP' />
+          <param name='toolbar' value='yes' />
+          <param name='static_image' value='https://public.tableau.com/static/images/M6/M6SMRJKHP/1.png' /> 
+          <param name='animate_transition' value='yes' />
+          <param name='display_static_image' value='yes' />
+          <param name='display_spinner' value='yes' />
+          <param name='display_overlay' value='yes' />
+          <param name='display_count' value='yes' />
+          <param name='language' value='en-US' />
+          <param name='filter' value='publish=yes' />
+        </object>
+      </div>
+    </div>
+
+    <div class="viz-container">
+      <h3>3. Gini Table</h3>
+      <p>[Placeholder – Tableau embed to be added later]</p>
+    </div>
+
+    <div class="viz-container">
+      <h3>4. Lorenz Curve</h3>
+      <p>[Placeholder – Tableau embed to be added later]</p>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About the Project</h2>
+    <p>
+      This project is part of a research initiative on digital transformation and inequality.  
+      It provides policymakers, researchers, and the public with an accessible view of how 
+      internet infrastructure distribution affects inclusivity in the digital economy.
+    </p>
+    <h3>Team</h3>
+    <div class="team-list">
+      <div class="team-member"><strong>Sharada Srinivasan</strong> 
+        <a href="mailto:ssrinivasan11@worldbank.org" class="email-link">ssrinivasan11@worldbank.org</a></div>
+      <div class="team-member"><strong>He Wang</strong> 
+        <a href="mailto:hwang21@worldbank.org" class="email-link">hwang21@worldbank.org</a></div>
+      <div class="team-member"><strong>Yifan Guo</strong> 
+        <a href="mailto:yguo14@worldbank.org" class="email-link">yguo14@worldbank.org</a></div>
+    </div>
+  </section>
+
+  <!-- Tab Switcher & Tableau Init -->
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+    }
+    // Default active tab
+    document.getElementById('home').classList.add('active');
+
+    // Tableau init for Country Map
+    var divElement = document.getElementById('viz1757457283941');
+    var vizElement = divElement.getElementsByTagName('object')[0];
+    if (divElement.offsetWidth > 800) { 
+      vizElement.style.width='1000px'; vizElement.style.height='827px';
+    } else if (divElement.offsetWidth > 500) { 
+      vizElement.style.width='1000px'; vizElement.style.height='827px';
+    } else { 
+      vizElement.style.width='100%'; vizElement.style.height='1027px';
+    }
+    var scriptElement = document.createElement('script');
+    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+    vizElement.parentNode.insertBefore(scriptElement, vizElement);
+  </script>
+
+</body>
+</html>
+
