@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Digital Divide Project</title>
+  <style>
+    body { margin: 0; font: 16px -apple-system, sans-serif; line-height: 1.6em; }
+    nav { background: #333; padding: 0.5em; }
+    nav ul { list-style: none; display: flex; justify-content: center; gap: 2em; margin: 0; padding: 0; }
+    nav a { color: white; text-decoration: none; font-weight: bold; cursor: pointer; }
+    nav a:hover { text-decoration: underline; }
+    section { padding: 2em; max-width: 1000px; margin: auto; display: none; }
+    section.active { display: block; }
+    h1, h2, h3, h4 { text-align: center; }
+    .viz-container { margin: 2em auto; }
+    .team-list { max-width: 600px; margin: 2em auto; }
+    .team-member { margin-bottom: 1em; }
+    .team-member strong { display: inline-block; width: 200px; }
+    a.download-link { display: block; text-align: center; margin-top: 1em; font-weight: bold; }
+    a.email-link { color: #0066cc; text-decoration: none; }
+    a.email-link:hover { text-decoration: underline; }
+    table { border-collapse: collapse; margin: 1em auto; }
+    table, th, td { border: 1px solid #ccc; }
+    th, td { padding: 6px 12px; text-align: center; }
+    @media (prefers-color-scheme: dark) {
+      body { background-color: #222; color: #eee; }
+      nav { background: #111; }
+      nav a { color: #eee; }
+      table, th, td { border: 1px solid #555; }
+      a.download-link { color: #66ccff; }
+      a.email-link { color: #66ccff; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Tabs -->
+  <nav>
+    <ul>
+      <li><a onclick="showTab('home')">Home</a></li>
+      <li><a onclick="showTab('data')">Data Source</a></li>
+      <li><a onclick="showTab('methodology')">Methodology</a></li>
+      <li><a onclick="showTab('results')">Results</a></li>
+      <li><a onclick="showTab('about')">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- Home -->
+  <section id="home" class="active">
+    <h1>Digital Divide Analysis</h1>
+    <h2>Project Description</h2>
+    <p>
+      With the rise of the digital economy, an important and evolving topic has been the digital divide. 
+      It was first granted international exposure and brought to the forefront when it began appearing 
+      in several United Nations reports, and has become a critical concern for organizations, policymakers, 
+      and scholars across various fields. Digital divide refers to the gap between people who have 
+      adequate access to information communication technology (ICT) and people who have poor or no 
+      access to ICT. 
+    </p>
+    <p>
+      Traditionally, much of the discourse around the digital divide has framed the issue in binary terms: 
+      the presence or absence of internet coverage. While this perspective has been useful in establishing 
+      basic access goals, it obscures significant variations in the quality of internet access, including speed, 
+      reliability, and bandwidth. 
+    </p>
+    <p>
+      Despite this recognition, current empirical approaches remain constrained. Most existing metrics are 
+      area-based, measuring coverage over a geographic extent without accounting for the distribution of 
+      populations within those areas. To address this gap, this report proposes a novel, population-based 
+      measurement index to capture the evolving nature of internet quality.
+    </p>
+    <p>
+      Beyond measurement, this report also explores predictive modeling techniques to fill existing data gaps. 
+      In regions where high-resolution internet speed data are unavailable or unreliable, can machine learning 
+      generate accurate predictions based on geospatial indicators? These secondary research questions 
+      assess methodological rigor and practical applicability.
+    </p>
+  </section>
+
+  <!-- Data Source -->
+  <section id="data">
+    <h2>Data Source</h2>
+    <p>Full details of Ookla, Meta, Kontur, and World Bank datasets (see project notes).</p>
+    <!-- You can paste your full Data Source content from 0909version here -->
+  </section>
+
+  <!-- Methodology -->
+  <section id="methodology">
+    <h2>Methodology</h2>
+    <p>
+      Internet speed metrics are aggregated from zoom-16 tiles into zoom-14 for efficiency, centroids assigned 
+      to World Bank boundaries, then weighted averages and medians computed. 
+    </p>
+    <a href="ReadMe_InternetSpeed_GADM_admin2.pdf" class="download-link" target="_blank">
+      📄 Download Full Methodology (PDF)
+    </a>
+  </section>
+
+  <!-- Results -->
+  <section id="results">
+    <h2>Results</h2>
+
+    <div class="viz-container">
+      <h3>1. Global Trends in Internet Speed</h3>
+      <p>[Coming Soon – Tableau embed]</p>
+    </div>
+
+    <div class="viz-container">
+      <h3>2. Country-Level Interactive Map</h3>
+      <div class='tableauPlaceholder' id='viz1757457283941' style='position: relative'>
+        <noscript>
+          <a href='#'>
+            <img alt='Dashboard 2'
+                 src='https://public.tableau.com/static/images/M6/M6SMRJKHP/1.png'
+                 style='border: none'/>
+          </a>
+        </noscript>
+        <object class='tableauViz' style='display:none;'>
+          <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+          <param name='embed_code_version' value='3' /> 
+          <param name='path' value='shared/M6SMRJKHP' />
+          <param name='toolbar' value='yes' />
+          <param name='static_image' value='https://public.tableau.com/static/images/M6/M6SMRJKHP/1.png' /> 
+          <param name='animate_transition' value='yes' />
+          <param name='display_static_image' value='yes' />
+          <param name='display_spinner' value='yes' />
+          <param name='display_overlay' value='yes' />
+          <param name='display_count' value='yes' />
+          <param name='language' value='en-US' />
+          <param name='filter' value='publish=yes' />
+        </object>
+      </div>
+    </div>
+
+    <div class="viz-container">
+      <h3>3. Gini Table</h3>
+      <p>[Coming Soon – Tableau embed]</p>
+    </div>
+
+    <div class="viz-container">
+      <h3>4. Lorenz Curve</h3>
+      <p>[Coming Soon – Tableau embed]</p>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About the Project</h2>
+    <p>
+      This project is part of a research initiative on digital transformation and inequality.  
+      It provides policymakers, researchers, and the public with an accessible view of how 
+      internet infrastructure distribution affects inclusivity in the digital economy.
+    </p>
+    <h3>Team</h3>
+    <div class="team-list">
+      <div class="team-member"><strong>Sharada Srinivasan</strong> 
+        <a href="mailto:ssrinivasan11@worldbank.org" class="email-link">ssrinivasan11@worldbank.org</a></div>
+      <div class="team-member"><strong>He Wang</strong> 
+        <a href="mailto:hwang21@worldbank.org" class="email-link">hwang21@worldbank.org</a></div>
+      <div class="team-member"><strong>Yifan Guo</strong> 
+        <a href="mailto:yguo14@worldbank.org" class="email-link">yguo14@worldbank.org</a></div>
+    </div>
+  </section>
+
+  <!-- Tab Switcher & Tableau Init -->
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+    }
+    document.getElementById('home').classList.add('active');
+
+    var divElement = document.getElementById('viz1757457283941');
+    var vizElement = divElement.getElementsByTagName('object')[0];
+    if (divElement.offsetWidth > 800) { 
+      vizElement.style.width='1000px'; vizElement.style.height='827px';
+    } else if (divElement.offsetWidth > 500) { 
+      vizElement.style.width='1000px'; vizElement.style.height='827px';
+    } else { 
+      vizElement.style.width='100%'; vizElement.style.height='1027px';
+    }
+    var scriptElement = document.createElement('script');
+    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+    vizElement.parentNode.insertBefore(scriptElement, vizElement);
+  </script>
+
+</body>
+</html>
